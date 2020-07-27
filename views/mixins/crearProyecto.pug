@@ -1,0 +1,18 @@
+mixin crearProyecto(proyecto = {})
+    // -
+        action=`/nuevo-proyecto/${proyecto.id || ''}` funciona como un if 
+        si proyecto esta vacio la URL sera /nuevo-proyecto/ esto nos sirve para el tamplate agregar proyecto
+        si no esta vacio, entonvces la URL seeria /nuevo-proyecto/id_del_proyecto y esta nos serviria para editar proyecto
+        asi podemos usar el mismo tamplate para las dos acciones
+
+        Algo similar pasar en ${proyecto.nombre ? 'Guardar' : 'Agregar'}
+        para cambiar el texto del boton
+        seria como 
+        SI PROYECTO.NOMBRE NO ESTA VACIO el texto del boton seria Guardar 
+        de lo contrario seria Agregar
+    form.agregar-proyecto(action=`/nuevo-proyecto/${proyecto.id || ''}` method="POST") 
+        .campo
+            label(for="nombre") Nombre Proyecto:
+            input(value=proyecto.nombre type="text" id="nombre" name="nombre" placeholder="Nombre Proyecto")
+        .campo.enviar
+            input(type="submit" value=`${proyecto.nombre ? 'Guardar' : 'Agregar'}` class="boton")

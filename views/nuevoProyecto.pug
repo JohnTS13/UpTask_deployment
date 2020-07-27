@@ -1,0 +1,16 @@
+extends layout
+
+include mixins/crearProyecto
+
+block contenido
+    .contenido-principal
+        h1= nombrePagina
+
+        //-
+            verificar que existe cuando se va a iterar de esta menra 
+            ya que una nueva pagina no va a tener errores
+
+        if errores 
+            each error in errores
+                .alerta= error.texto
+        +crearProyecto(proyecto)
